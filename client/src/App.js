@@ -1,14 +1,16 @@
 import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Comments from "./components/Comments";
 
 function App() {
   const [message, setMessage] = useState("");
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/example").then((data) => {
+    axios.get("http://localhost:8080/comments").then((data) => {
       console.log(data);
-      setMessage(data.data.text);
+      setComments(data.data);
     });
   }, []);
 
@@ -16,7 +18,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Hello!</h1>
-        <p>{message}</p>
+        <Comments comments={comments} />
       </header>
     </div>
   );
