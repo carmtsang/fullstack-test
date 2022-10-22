@@ -2,21 +2,8 @@ import Input from "./Input";
 import { useState } from "react";
 import Button from "../Button";
 
-const AddCommentForm = ({ message, handleComment }) => {
-  // const [message, setMessage] = useState({
-  //   name: "",
-  //   comment: "",
-  // });
+const AddCommentForm = ({ message, handleComment, addComment }) => {
   const { name, comment } = message;
-
-  // const handleComment = (e) => {
-  //   const { name, value } = e.target;
-  //   setMessage((prev) => ({
-  //     ...prev,
-  //     [name]: value,
-  //   }));
-  //   console.log(message);
-  // };
 
   return (
     <section>
@@ -36,7 +23,7 @@ const AddCommentForm = ({ message, handleComment }) => {
           placeholder="Leave a comment!"
           onChange={handleComment}
         />
-        <Button type="submit" onClick={(e) => e.preventDefault()}>
+        <Button type="submit" onClick={addComment}>
           Add Comment
         </Button>
       </form>
