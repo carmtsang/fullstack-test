@@ -7,16 +7,19 @@ const AddCommentForm = ({ message, handleComment, addComment }) => {
   const { name, comment } = message;
 
   return (
-    <section>
+    <Container>
       <Box
         component="form"
         sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
+          display: "flex",
+          justifyContent: "space-between",
+          flexDirection: "column",
         }}
         noValidate
         autoComplete="off"
+        fullWith={true}
       >
-        <Container>
+        <Box sx={{ display: "flex" }}>
           <TextField
             label="Name"
             value={name}
@@ -24,25 +27,28 @@ const AddCommentForm = ({ message, handleComment, addComment }) => {
             onChange={handleComment}
             helperText="Input your name if you want!"
             variant="standard"
+            style={{ width: 300 }}
+            margin="normal"
           />
-        </Container>
-        <Container>
+        </Box>
+        <Box sx={{ display: "flex" }}>
           <TextField
             label="Leave a comment"
             value={comment}
             name="comment"
             onChange={handleComment}
             multiline
-            rows={2}
-            variant="filled"
-            // id="fullwidth"
+            rows={3}
+            variant="standard"
+            style={{ width: "100%" }}
+            required
           />
-        </Container>
-        <Button type="submit" onClick={addComment}>
-          Add Comment
-        </Button>
+          <Button type="submit" onClick={addComment}>
+            Add Comment
+          </Button>
+        </Box>
       </Box>
-    </section>
+    </Container>
   );
 };
 
