@@ -14,6 +14,17 @@ router.get("/", async (req, res) => {
 });
 
 // posting comment
-router.post("/", (req, res) => {});
+router.post("/", async (req, res) => {
+  const comment = new Comment({
+    name: req.body.name,
+    comment: req.body.comment,
+  });
+  try {
+    const newComment = await comment.save();
+    res.status(201).json(newComment);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
 module.exports = router;

@@ -12,6 +12,7 @@ app.use(morgan("dev"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(express.json());
 
 // Make sure you have a .env file with this value, otherwise your DB won't work.
 const mongoURL = process.env.MONGOURL;
