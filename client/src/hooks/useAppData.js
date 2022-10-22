@@ -9,7 +9,7 @@ const useAppData = () => {
   });
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BASE_URL}/comments`).then((data) => {
+    axios.get(`/comments`).then((data) => {
       console.log(data);
       setComments(data.data.reverse());
     });
@@ -22,6 +22,11 @@ const useAppData = () => {
       [name]: value,
     }));
     console.log(message);
+  };
+
+  const addComment = (e) => {
+    e.preventDefault();
+    axios.put();
   };
 
   return { comments, setComments, handleComment, message };
