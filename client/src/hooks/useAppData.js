@@ -3,10 +3,9 @@ import { useState, useEffect } from "react";
 
 const useAppData = () => {
   const [comments, setComments] = useState([]);
-  const [comment, setComment] = useState({});
 
   useEffect(() => {
-    axios.get("http://localhost:8080/comments").then((data) => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/comments`).then((data) => {
       console.log(data);
       setComments(data.data.reverse());
     });
