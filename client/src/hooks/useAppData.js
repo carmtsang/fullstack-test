@@ -32,11 +32,14 @@ const useAppData = () => {
 
   const addComment = (e) => {
     e.preventDefault();
-
     return axios
       .post("/comments", message)
       .then((data) => {
-        console.log(data);
+        setMessage({
+          name: "",
+          comment: "",
+        });
+        console.log(`added to db: ${JSON.stringify(data)}`);
       })
       .catch((err) => {
         console.log(err.response.status);
@@ -45,7 +48,14 @@ const useAppData = () => {
       });
   };
 
-  return { comments, setComments, handleComment, message, addComment };
+  return {
+    comments,
+    setComments,
+    handleComment,
+    message,
+    addComment,
+    setMessage,
+  };
 };
 
 export default useAppData;

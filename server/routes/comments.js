@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 // posting comment
 router.post("/", async (req, res) => {
   const comment = new Comment({
-    name: req.body.name,
+    name: !req.body.name ? "Anonymous User" : req.body.name,
     comment: req.body.comment,
   });
   try {
