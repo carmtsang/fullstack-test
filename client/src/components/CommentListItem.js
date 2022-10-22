@@ -1,13 +1,11 @@
-import moment from "moment";
 import React, { Fragment } from "react";
 import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
+import { showTime } from "../helpers/helpers";
 
 const CommentListItem = ({ name, comment, date }) => {
-  const timeAgo = moment(date).fromNow();
-
   return (
     <>
       <ListItem alignItems="flex-start">
@@ -23,7 +21,7 @@ const CommentListItem = ({ name, comment, date }) => {
               >
                 {comment}
               </Typography>
-              {timeAgo}
+              - {showTime(date)}
             </Fragment>
           }
         />
