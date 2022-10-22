@@ -1,5 +1,6 @@
 import useAppData from "../hooks/useAppData";
 import CommentListItem from "./CommentListItem";
+import List from "@mui/material/List";
 
 const CommentsList = () => {
   const { comments } = useAppData();
@@ -15,11 +16,7 @@ const CommentsList = () => {
     );
   });
 
-  return (
-    <section>
-      <ul>{commentsList}</ul>
-    </section>
-  );
+  return <List sx={{ width: "100%", maxWidth: 700 }}>{commentsList}</List>;
 };
 
 export default CommentsList;

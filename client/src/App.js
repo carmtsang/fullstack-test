@@ -11,14 +11,14 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Random Post</h1>
-        <AddCommentForm
-          message={message}
-          handleComment={handleComment}
-          addComment={addComment}
-        />
-
-        <CommentsList />
       </header>
+      <AddCommentForm
+        message={message}
+        handleComment={handleComment}
+        addComment={addComment}
+      />
+
+      <CommentsList />
     </div>
   );
 }
