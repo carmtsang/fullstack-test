@@ -9,6 +9,7 @@ const CommentsList = ({ comments }) => {
     return (
       <Container key={comment._id}>
         <CommentListItem
+          id={comment._id}
           name={comment.name}
           date={comment.date}
           comment={comment.comment}

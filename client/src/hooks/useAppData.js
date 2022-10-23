@@ -3,10 +3,6 @@ import { useState, useEffect } from "react";
 
 const useAppData = () => {
   const [comments, setComments] = useState([]);
-  const [message, setMessage] = useState({
-    name: "",
-    comment: "",
-  });
 
   useEffect(() => {
     axios
@@ -21,33 +17,32 @@ const useAppData = () => {
       });
   }, []);
 
-  // setting new comment
-  const handleComment = (e) => {
-    const { name, value } = e.target;
-    setMessage((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
   // update without refresh
   const updateComments = (comment) => {
     setComments((prev) => [comment, ...prev]);
   };
 
   // save to db
-  const addComment = () => {
+  const addComment = (message) => {
     return axios
-      .post("/comments", message)
+      .post(`/comments`, message)
       .then((data) => {
         console.log(data.data);
         updateComments(data.data);
       })
-      .then(() => {
-        setMessage({
-          name: "",
-          comment: "",
-        });
+      .catch((err) => {
+        console.log(err.response.status);
+        console.log(err.response.headers);
+        console.log(err.response.data);
+      });
+  };
+
+  const addReply = (id, message) => {
+    return axios
+      .post(`/comments/${id}`, message)
+      .then((data) => {
+        console.log(data.data);
+        // update the replies
       })
       .catch((err) => {
         console.log(err.response.status);
@@ -57,12 +52,10 @@ const useAppData = () => {
   };
 
   return {
-    handleComment,
-    message,
     addComment,
-    setMessage,
     comments,
     updateComments,
+    addReply,
   };
 };
 

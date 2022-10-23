@@ -7,12 +7,18 @@ import Collapse from "@mui/material/Collapse";
 import Button from "@mui/material/Button";
 import { replyNumber } from "../helpers/helpers";
 import Comment from "./Comment";
+import AddCommentForm from "./form";
 
-const ReplySection = ({ replies }) => {
+const ReplySection = ({ replies, addReply, id }) => {
   const [open, setOpen] = useState(false);
+  const [openForm, setOpenForm] = useState(false);
 
   const handleClick = () => {
     setOpen(!open);
+  };
+
+  const handleForm = () => {
+    setOpenForm(!openForm);
   };
 
   return (
@@ -31,11 +37,15 @@ const ReplySection = ({ replies }) => {
               >
                 {replyNumber(replies)}
               </Typography>
-              <Button onClick={() => {}}>Reply</Button>
+              <Button onClick={handleForm}>Reply</Button>
             </React.Fragment>
           }
         />
       </ListItem>
+      <Collapse in={openForm} timeout="auto" unmountOnExit>
+        <AddCommentForm id={id} />
+      </Collapse>
+
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List
           dense
@@ -50,6 +60,7 @@ const ReplySection = ({ replies }) => {
             return (
               <Comment
                 key={reply._id}
+                id={reply._id}
                 name={reply.name}
                 date={reply.date}
                 comment={reply.comment}

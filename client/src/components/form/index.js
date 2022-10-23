@@ -2,12 +2,44 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
+import { useState } from "react";
+import useAppData from "../../hooks/useAppData";
 
-const AddCommentForm = ({ message, handleComment, addComment }) => {
+const AddCommentForm = ({ id }) => {
+  const { addReply, addComment } = useAppData();
+  const [message, setMessage] = useState({
+    name: "",
+    comment: "",
+  });
+
   const { name, comment } = message;
+  // setting new comment
+  const handleComment = (e) => {
+    const { name, value } = e.target;
+    setMessage((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  console.log(message);
 
   const handleSubmit = (e) => {
-    addComment();
+    if (id) {
+      return addReply(id, message).then(() => {
+        setMessage({
+          name: "",
+          comment: "",
+        });
+      });
+    }
+
+    addComment(message).then(
+      setMessage({
+        name: "",
+        comment: "",
+      })
+    );
     e.preventDefault();
   };
 
