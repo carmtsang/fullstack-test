@@ -12,7 +12,6 @@ const useAppData = () => {
     axios
       .get(`/comments`)
       .then((data) => {
-        console.log(data);
         setComments(data.data.reverse());
       })
       .catch((err) => {
@@ -30,16 +29,22 @@ const useAppData = () => {
     }));
   };
 
-  const addComment = (e) => {
-    e.preventDefault();
+  const updateComments = (comment) => {
+    setComments((prev) => [comment, ...prev]);
+  };
+
+  const addComment = () => {
     return axios
       .post("/comments", message)
       .then((data) => {
+        console.log(data.data);
+        updateComments(data.data);
+      })
+      .then(() => {
         setMessage({
           name: "",
           comment: "",
         });
-        console.log(`added to db: ${JSON.stringify(data)}`);
       })
       .catch((err) => {
         console.log(err.response.status);
@@ -49,12 +54,12 @@ const useAppData = () => {
   };
 
   return {
-    comments,
-    setComments,
     handleComment,
     message,
     addComment,
     setMessage,
+    comments,
+    updateComments,
   };
 };
 

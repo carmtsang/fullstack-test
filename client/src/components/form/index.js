@@ -6,6 +6,10 @@ import Container from "@mui/material/Container";
 const AddCommentForm = ({ message, handleComment, addComment }) => {
   const { name, comment } = message;
 
+  const handleSubmit = (e) => {
+    addComment();
+  };
+
   return (
     <Container>
       <Box
@@ -17,7 +21,9 @@ const AddCommentForm = ({ message, handleComment, addComment }) => {
         }}
         noValidate
         autoComplete="off"
-        fullWith={true}
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
       >
         <Box sx={{ display: "flex" }}>
           <TextField
@@ -25,7 +31,7 @@ const AddCommentForm = ({ message, handleComment, addComment }) => {
             value={name}
             name="name"
             onChange={handleComment}
-            helperText="Input your name if you want!"
+            helperText="No name will show as 'Anonymous User'"
             variant="standard"
             style={{ width: 300 }}
             margin="normal"
@@ -43,7 +49,7 @@ const AddCommentForm = ({ message, handleComment, addComment }) => {
             style={{ width: "100%" }}
             required
           />
-          <Button type="submit" onClick={addComment}>
+          <Button type="submit" onClick={handleSubmit}>
             Add Comment
           </Button>
         </Box>

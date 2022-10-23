@@ -3,14 +3,11 @@ import CommentListItem from "./CommentListItem";
 import List from "@mui/material/List";
 import Container from "@mui/material/Container";
 
-const CommentsList = () => {
-  const { comments } = useAppData();
-
+const CommentsList = ({ comments }) => {
   const commentsList = comments.map((comment) => {
     return (
-      <Container>
+      <Container key={comment._id}>
         <CommentListItem
-          key={comment._id}
           name={comment.name}
           date={comment.date}
           comment={comment.comment}

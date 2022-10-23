@@ -5,7 +5,8 @@ import useAppData from "./hooks/useAppData";
 import Container from "@mui/material/Container";
 
 function App() {
-  const { message, handleComment, addComment } = useAppData();
+  const { message, handleComment, addComment, updateComments, comments } =
+    useAppData();
 
   return (
     <div className="App">
@@ -17,8 +18,9 @@ function App() {
           message={message}
           handleComment={handleComment}
           addComment={addComment}
+          updateComments={updateComments}
         />
-        <CommentsList />
+        <CommentsList comments={comments} />
       </Container>
     </div>
   );
