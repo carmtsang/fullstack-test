@@ -1,28 +1,23 @@
 import List from "@mui/material/List";
-import ReplyListItem from "./ReplyListItem";
 import React, { useState } from "react";
 import ListItem from "@mui/material/ListItem";
-import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 import Collapse from "@mui/material/Collapse";
 import Button from "@mui/material/Button";
+import { replyNumber } from "../helpers/helpers";
+import Comment from "./Comment";
 
-const ReplySection = ({ replies, handleClick, open }) => {
-  const replyNumber = (replies) => {
-    const num = replies.length;
+const ReplySection = ({ replies }) => {
+  const [open, setOpen] = useState(false);
 
-    if (num === 1) {
-      return `${num} reply`;
-    }
-
-    return `${num} replies`;
+  const handleClick = () => {
+    setOpen(!open);
   };
 
   return (
     <>
       <ListItem
-        alignItems="flex-start"
         secondaryAction={<Button onClick={handleClick}>View Replies</Button>}
       >
         <ListItemText
@@ -36,7 +31,7 @@ const ReplySection = ({ replies, handleClick, open }) => {
               >
                 {replyNumber(replies)}
               </Typography>
-              <Button>Reply</Button>
+              <Button onClick={() => {}}>Reply</Button>
             </React.Fragment>
           }
         />
@@ -45,24 +40,20 @@ const ReplySection = ({ replies, handleClick, open }) => {
         <List
           dense
           disablePadding
-          sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+          sx={{
+            width: "90%",
+            ml: 6,
+            mr: 5,
+          }}
         >
           {replies.map((reply) => {
             return (
-              <ListItem key={reply._id}>
-                <ListItemText
-                  primary={reply.name}
-                  secondary={
-                    <Typography
-                      sx={{ width: "95%" }}
-                      variant="body2"
-                      color="black"
-                    >
-                      {reply.comment}
-                    </Typography>
-                  }
-                />
-              </ListItem>
+              <Comment
+                key={reply._id}
+                name={reply.name}
+                date={reply.date}
+                comment={reply.comment}
+              />
             );
           })}
         </List>
