@@ -5,7 +5,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 import Collapse from "@mui/material/Collapse";
 import Button from "@mui/material/Button";
-import { replyNumber } from "../helpers/helpers";
+import { replyWord } from "../helpers/helpers";
 import Comment from "./Comment";
 import AddCommentForm from "./form";
 
@@ -21,10 +21,18 @@ const ReplySection = ({ replies, addReply, id }) => {
     setOpenForm(!openForm);
   };
 
+  const replyNum = replies.length;
+
   return (
     <>
       <ListItem
-        secondaryAction={<Button onClick={handleClick}>View Replies</Button>}
+        secondaryAction={
+          replies.length !== 0 && (
+            <Button onClick={handleClick}>{`View ${replyWord(
+              replies
+            )}`}</Button>
+          )
+        }
       >
         <ListItemText
           secondary={
@@ -35,15 +43,27 @@ const ReplySection = ({ replies, addReply, id }) => {
                 variant="body2"
                 color="text.primary"
               >
-                {replyNumber(replies)}
+                {`${replyNum} ${replyWord(replies)}`}
               </Typography>
               <Button onClick={handleForm}>Reply</Button>
             </React.Fragment>
           }
         />
       </ListItem>
-      <Collapse in={openForm} timeout="auto" unmountOnExit>
-        <AddCommentForm id={id} />
+      <Collapse disablePadding in={openForm} timeout="auto" unmountOnExit>
+        <List
+          dense
+          disablePadding
+          sx={{
+            width: "90%",
+            ml: 6,
+            mr: 5,
+          }}
+        >
+          <ListItem>
+            <AddCommentForm id={id} />
+          </ListItem>
+        </List>
       </Collapse>
 
       <Collapse in={open} timeout="auto" unmountOnExit>

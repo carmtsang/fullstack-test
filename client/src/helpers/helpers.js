@@ -21,11 +21,11 @@ export function fetchReplies(id, comments) {
   return arr.reverse();
 }
 
-export function replyNumber(replies) {
+export function replyWord(replies) {
   const num = replies.length;
   if (num === 1) {
-    return `${num} reply`;
+    return `reply`;
   }
 
-  return `${num} replies`;
+  return `replies`;
 }

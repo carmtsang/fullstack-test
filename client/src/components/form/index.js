@@ -22,8 +22,6 @@ const AddCommentForm = ({ id }) => {
     }));
   };
 
-  console.log(message);
-
   const handleSubmit = (e) => {
     if (id) {
       return addReply(id, message).then(() => {
@@ -42,6 +40,14 @@ const AddCommentForm = ({ id }) => {
     );
     e.preventDefault();
   };
+
+  let buttonWord;
+
+  if (!id) {
+    buttonWord = "Comment";
+  } else {
+    buttonWord = "Reply";
+  }
 
   return (
     <Container>
@@ -77,13 +83,13 @@ const AddCommentForm = ({ id }) => {
             name="comment"
             onChange={handleComment}
             multiline
-            rows={3}
+            rows={2}
             variant="standard"
             style={{ width: "100%" }}
             required
           />
           <Button type="submit" onClick={handleSubmit}>
-            Add Comment
+            {`Add ${buttonWord}`}
           </Button>
         </Box>
       </Box>
