@@ -8,6 +8,7 @@ const AddCommentForm = ({ message, handleComment, addComment }) => {
 
   const handleSubmit = (e) => {
     addComment();
+    e.preventDefault();
   };
 
   return (

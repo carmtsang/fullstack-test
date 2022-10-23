@@ -1,5 +1,6 @@
 import moment from "moment";
 
+// if post is from today, show how long ago it was posted
 export function showTime(date) {
   const timeAgo = moment(date).fromNow();
   const showDate = moment(date).format("ll");

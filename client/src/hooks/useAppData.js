@@ -21,6 +21,7 @@ const useAppData = () => {
       });
   }, []);
 
+  // setting new comment
   const handleComment = (e) => {
     const { name, value } = e.target;
     setMessage((prev) => ({
@@ -29,10 +30,12 @@ const useAppData = () => {
     }));
   };
 
+  // update without refresh
   const updateComments = (comment) => {
     setComments((prev) => [comment, ...prev]);
   };
 
+  // save to db
   const addComment = () => {
     return axios
       .post("/comments", message)
