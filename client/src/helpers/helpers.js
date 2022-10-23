@@ -12,3 +12,10 @@ export function showTime(date) {
 
   return showDate;
 }
+
+// find replies for comment
+
+export function fetchReplies(id, comments) {
+  const comment = comments.find((commentObj) => commentObj._id === id);
+  return comment.replies;
+}
