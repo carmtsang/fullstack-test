@@ -8,21 +8,25 @@ import { showTime } from "../helpers/helpers";
 const CommentListItem = ({ name, comment, date }) => {
   return (
     <>
-      <ListItem alignItems="flex-start">
+      <ListItem
+        alignItems="flex-start"
+        secondaryAction={
+          <Typography
+            sx={{ display: "inline" }}
+            component="span"
+            variant="caption"
+            color="text.primary"
+          >
+            {showTime(date)}
+          </Typography>
+        }
+      >
         <ListItemText
           primary={name}
           secondary={
-            <Fragment>
-              <Typography
-                sx={{ display: "inline" }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                {comment}
-              </Typography>
-              - {showTime(date)}
-            </Fragment>
+            <Typography sx={{ width: "95%" }} variant="body2" color="black">
+              {comment}
+            </Typography>
           }
         />
       </ListItem>
