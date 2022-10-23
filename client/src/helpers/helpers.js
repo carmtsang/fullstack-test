@@ -16,7 +16,9 @@ export function showTime(date) {
 // find replies for comment
 export function fetchReplies(id, comments) {
   const comment = comments.find((commentObj) => commentObj._id === id);
-  return comment.replies;
+  let arr = comment.replies.map((x) => x);
+
+  return arr.reverse();
 }
 
 export function replyNumber(replies) {
