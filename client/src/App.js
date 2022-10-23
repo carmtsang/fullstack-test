@@ -3,6 +3,7 @@ import CommentsList from "./components/CommentsList";
 import AddCommentForm from "./components/form";
 import useAppData from "./hooks/useAppData";
 import Container from "@mui/material/Container";
+import NoComments from "./components/NoComments";
 
 function App() {
   const { message, handleComment, addComment, updateComments, comments } =
@@ -20,7 +21,11 @@ function App() {
           addComment={addComment}
           updateComments={updateComments}
         />
-        <CommentsList comments={comments} />
+        {comments.length === 0 ? (
+          <NoComments />
+        ) : (
+          <CommentsList comments={comments} />
+        )}
       </Container>
     </div>
   );
