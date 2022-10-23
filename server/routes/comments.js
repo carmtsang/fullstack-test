@@ -27,4 +27,22 @@ router.post("/", async (req, res) => {
   }
 });
 
+// posting a reply
+router.post("/:id", async (req, res) => {
+  const reply = {
+    name: !req.body.name ? "Anonymous User" : req.body.name,
+    comment: req.body.comment,
+  };
+  const comment = await Comment.findById(req.params.id);
+  if (comment === null) {
+    return res.status(404).json({ message: "Cannot find comment" });
+  }
+  try {
+    comment.replies.push(reply);
+    const newReply = await comment.save();
+    res.status(201).json(newReply);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 module.exports = router;
