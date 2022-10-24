@@ -1,11 +1,12 @@
 import CommentListItem from "./CommentListItem";
 import List from "@mui/material/List";
 import Container from "@mui/material/Container";
-import { fetchReplies } from "../helpers/helpers";
+import { fetchRepliesForComment } from "../helpers/helpers";
 
 const CommentsList = ({ comments }) => {
   const commentsList = comments.map((comment) => {
-    const replies = fetchReplies(comment._id, comments);
+    const replies = fetchRepliesForComment(comment._id, comments);
+
     return (
       <Container key={comment._id}>
         <CommentListItem

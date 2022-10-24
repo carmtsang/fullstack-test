@@ -13,8 +13,8 @@ export function showTime(date) {
   return showDate;
 }
 
-// find replies for comment
-export function fetchReplies(id, comments) {
+// find replies for comment & reverse order
+export function fetchRepliesForComment(id, comments) {
   const comment = comments.find((commentObj) => commentObj._id === id);
   let arr = comment.replies.map((x) => x);
 
