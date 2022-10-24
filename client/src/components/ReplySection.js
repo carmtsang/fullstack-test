@@ -61,7 +61,7 @@ const ReplySection = ({ replies, addReply, id }) => {
           }}
         >
           <ListItem>
-            <AddCommentForm id={id} />
+            <AddCommentForm id={id} addReply={addReply} />
           </ListItem>
         </List>
       </Collapse>

@@ -6,7 +6,7 @@ import Container from "@mui/material/Container";
 import NoComments from "./components/NoComments";
 
 function App() {
-  const { comments } = useAppData();
+  const { addComment, comments, addReply } = useAppData();
 
   return (
     <div className="App">
@@ -14,11 +14,11 @@ function App() {
         <h1>Random Post</h1>
       </header>
       <Container>
-        <AddCommentForm />
+        <AddCommentForm addComment={addComment} />
         {comments.length === 0 ? (
           <NoComments />
         ) : (
-          <CommentsList comments={comments} />
+          <CommentsList comments={comments} addReply={addReply} />
         )}
       </Container>
     </div>
