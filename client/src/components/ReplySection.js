@@ -50,7 +50,7 @@ const ReplySection = ({ replies, addReply, id }) => {
           }
         />
       </ListItem>
-      <Collapse disablePadding in={openForm} timeout="auto" unmountOnExit>
+      <Collapse in={openForm} timeout="auto" unmountOnExit>
         <List
           dense
           disablePadding
@@ -60,9 +60,9 @@ const ReplySection = ({ replies, addReply, id }) => {
             mr: 5,
           }}
         >
-          <ListItem>
-            <AddCommentForm id={id} addReply={addReply} />
-          </ListItem>
+          {/* <ListItem> */}
+          <AddCommentForm id={id} addReply={addReply} />
+          {/* </ListItem> */}
         </List>
       </Collapse>
 

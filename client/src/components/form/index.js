@@ -44,7 +44,7 @@ const AddCommentForm = ({ id, addComment, addReply }) => {
           e.preventDefault();
         }}
       >
-        <Box sx={{ display: "flex", m: 0 }}>
+        <Box sx={{ display: "flex" }}>
           <TextField
             label="Name"
             value={name}
@@ -52,7 +52,7 @@ const AddCommentForm = ({ id, addComment, addReply }) => {
             onChange={handleComment}
             helperText="No name will show as 'Anonymous User'"
             variant="standard"
-            style={{ width: 300 }}
+            style={{ width: 300, margin: 0 }}
             margin="normal"
           />
         </Box>

@@ -14,7 +14,7 @@ const Comment = ({ name, comment, date }) => {
             sx={{ display: "inline" }}
             component="span"
             variant="caption"
-            color="text.primary"
+            color="#838383"
           >
             {showTime(date)}
           </Typography>
@@ -23,7 +23,11 @@ const Comment = ({ name, comment, date }) => {
         <ListItemText
           primary={name}
           secondary={
-            <Typography sx={{ width: "95%" }} variant="body2" color="black">
+            <Typography
+              sx={{ width: "90%" }}
+              variant="body2"
+              color="text.primary"
+            >
               {comment}
             </Typography>
           }
