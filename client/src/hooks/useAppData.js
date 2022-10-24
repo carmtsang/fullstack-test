@@ -22,13 +22,22 @@ const useAppData = () => {
     setComments((prev) => [comment, ...prev]);
   };
 
+  const updateCommentReplies = (comment, comments) => {
+    const newComments = comments.map((obj) => {
+      if (obj._id === comment._id) {
+        return comment;
+      }
+      return obj;
+    });
+    setComments(newComments);
+  };
+
   // save to db
-  const addComment = (message) => {
+  const addReply = (id, message) => {
     return axios
-      .post(`/comments`, message)
+      .post(`/comments/${id}`, message)
       .then((data) => {
-        console.log(data.data);
-        updateComments(data.data);
+        updateCommentReplies(data.data, comments);
       })
       .catch((err) => {
         console.log(err.response.status);
@@ -37,12 +46,11 @@ const useAppData = () => {
       });
   };
 
-  const addReply = (id, message) => {
+  const addComment = (message) => {
     return axios
-      .post(`/comments/${id}`, message)
+      .post("/comments", message)
       .then((data) => {
-        console.log(data.data);
-        // update the replies
+        updateComments(data.data);
       })
       .catch((err) => {
         console.log(err.response.status);
