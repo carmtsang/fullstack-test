@@ -95,12 +95,16 @@ Once completed please answer the following questions.
 
 use Cypress for automated testing to test the following:
 
-- user can post a comment
-- anonymous user appears as name if only a comment is submitted
-- no post if there is no comment
-- time is displayed
-- posts are displayed in ascending order with newest post first
-- same tests for 'replies' as well
+- 'no comment' component shows when the post does not have any commets
+
+- a user can add a comment and their name, the comment will replace the initial 'no comment' section and show when it was posted.
+
+- anonymous user appears as name if only a comment is submitted with newest comment will show on top of older ones in ascending order.
+
+- nothing will post if there is no comment
+- Posts with no comments will display '0 replies' and not have a 'view replies' button.
+
+- adding a reply will update the number of replies and show the 'view replies' button, after submission the form hides
 
 ### If your form was given a new type of input field (such as a number field), how reusable are your components?
 
@@ -118,4 +122,4 @@ Added replies to the comments for the post, replies are added as subdocuments in
 
 Have feedback for how we could make this assignment better? Please let us know.
 
-Not too sure what 'As an anonymous user I can retrieve the list of coment entries, sorted by creation time.' means, I'm assuming it means it displays the list of comments in ascending order.
+I don't know what 'As an anonymous user I can retrieve the list of coment entries, sorted by creation time.' means, I'm assuming it means it displays the list of comments in ascending order.
