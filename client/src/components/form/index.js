@@ -2,41 +2,22 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { useState } from "react";
+import useFormData from "../../hooks/useFormData";
 
-const AddCommentForm = ({ id, addComment, updateComments, addReply }) => {
-  const [message, setMessage] = useState({
-    name: "",
-    comment: "",
-  });
+const AddCommentForm = ({ id, addComment, addReply }) => {
+  const { message, handleComment, clearMessage } = useFormData();
   const { name, comment } = message;
-  console.log(message);
-  // setting new comment
-  const handleComment = (e) => {
-    const { name, value } = e.target;
-    setMessage((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
 
   const handleSubmit = (e) => {
     if (id) {
       addReply(id, message).then(() => {
-        setMessage({
-          name: "",
-          comment: "",
-        });
+        clearMessage();
       });
     } else {
-      addComment(message).then(
-        setMessage({
-          name: "",
-          comment: "",
-        })
-      );
+      addComment(message).then(() => {
+        clearMessage();
+      });
     }
-
     e.preventDefault();
   };
 
@@ -63,7 +44,7 @@ const AddCommentForm = ({ id, addComment, updateComments, addReply }) => {
           e.preventDefault();
         }}
       >
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex", m: 0 }}>
           <TextField
             label="Name"
             value={name}
