@@ -88,17 +88,34 @@ Once completed please answer the following questions.
 
 ### Did you add any libraries or NPM packages (please leave blank if no)
 
-- momentjs for time
-- Material UI
+- moment.js to display the time of the comments
+- Material UI for styling
 
 ### What would be your approach to ensuring the application is ready for production (testing)?
 
+use Cypress for automated testing to test the following:
+
+- user can post a comment
+- anonymous user appears as name if only a comment is submitted
+- no post if there is no comment
+- time is displayed
+- posts are displayed in ascending order with newest post first
+- same tests for 'replies' as well
+
 ### If your form was given a new type of input field (such as a number field), how reusable are your components?
+
+original input field yes, it would be reusable but I chose to use MUI, original input component is in the 'form' folder. Form component was used twice, for the initial comment and for the reply.
 
 ### What did you not include in your solution that you want us to know about? Were you short on time and not able to include something that you want us to know about? Please list it here so that we know that you considered it.
 
+I assumed we did not have to create the 'online comment', if I had more time I would have crated post of some sort so it would look like its comments to a post. I would have added an alert for when someone tries to submit the form without a comment, spend more time on styling and add rules to leaving a comment - long posts only show a certain number of characters with a 'show more' button to display the entire comment/reply and commentlist show only the 10 comments only and have a 'show more'.
+
 ### Other information about your submission that you feel it's important that we know if applicable.
+
+Added replies to the comments for the post, replies are added as subdocuments in mongoDB.
 
 ### Your feedback on this technical challenge
 
 Have feedback for how we could make this assignment better? Please let us know.
+
+Not too sure what 'As an anonymous user I can retrieve the list of coment entries, sorted by creation time.' means, I'm assuming it means it displays the list of comments in ascending order.
