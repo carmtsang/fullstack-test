@@ -1,12 +1,12 @@
 import moment from "moment";
 
-// if post is from today, show how long ago it was posted
+// if post is from this month, show how long ago it was posted
 export function showTime(date) {
   const timeAgo = moment(date).fromNow();
   const showDate = moment(date).format("ll");
   const now = moment();
 
-  if (moment(date).isSame(now, "day")) {
+  if (moment(date).isSame(now, "month")) {
     return timeAgo;
   }
 
