@@ -8,6 +8,7 @@ const Comment = ({ name, comment, date }) => {
   return (
     <>
       <ListItem
+        sx={{ paddingBottom: 0 }}
         alignItems="flex-start"
         secondaryAction={
           <Typography

@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import useFormData from "../../hooks/useFormData";
 
-const AddCommentForm = ({ id, addComment, addReply }) => {
+const AddCommentForm = ({ id, addComment, addReply, handleForm }) => {
   const { message, handleComment, clearMessage } = useFormData();
   const { name, comment } = message;
 
@@ -12,6 +12,7 @@ const AddCommentForm = ({ id, addComment, addReply }) => {
     if (id) {
       addReply(id, message).then(() => {
         clearMessage();
+        handleForm();
       });
     } else {
       addComment(message).then(() => {

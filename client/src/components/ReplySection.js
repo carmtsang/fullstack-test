@@ -26,6 +26,7 @@ const ReplySection = ({ replies, addReply, id }) => {
   return (
     <>
       <ListItem
+        sx={{ paddingTop: 0 }}
         secondaryAction={
           replies.length !== 0 && (
             <Button onClick={handleClick}>{`View ${replyWord(
@@ -38,7 +39,7 @@ const ReplySection = ({ replies, addReply, id }) => {
           secondary={
             <React.Fragment>
               <Typography
-                sx={{ display: "inline" }}
+                sx={{ marginLeft: 2, marginRight: 2 }}
                 component="span"
                 variant="body2"
                 color="text.primary"
@@ -60,9 +61,7 @@ const ReplySection = ({ replies, addReply, id }) => {
             mr: 5,
           }}
         >
-          {/* <ListItem> */}
-          <AddCommentForm id={id} addReply={addReply} />
-          {/* </ListItem> */}
+          <AddCommentForm id={id} addReply={addReply} handleForm={handleForm} />
         </List>
       </Collapse>
 
